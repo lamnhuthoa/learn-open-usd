@@ -1,0 +1,19 @@
+#usda 1.0
+
+def "World"
+{
+    def "Geometry"
+    {
+        def Sphere "Sphere"
+        {
+        }
+    }
+
+    def "Looks"
+    {
+        def "Material"
+        {
+        }
+    }
+}
+
