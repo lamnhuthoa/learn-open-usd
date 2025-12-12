@@ -1,0 +1,17 @@
+#usda 1.0
+(
+    subLayers = [
+        @22-specifiers.usda@
+    ]
+)
+
+over "World"
+{
+    over "Box" (
+        prepend inherits = </World/_Look/_green>
+    )
+    {
+        double size = 4
+    }
+}
+
