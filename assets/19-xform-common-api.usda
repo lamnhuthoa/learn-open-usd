@@ -1,0 +1,28 @@
+#usda 1.0
+
+def Xform "World"
+{
+    def Xform "Parent_Prim"
+    {
+        float3 xformOp:rotateXYZ = (90, 0, 0)
+        float3 xformOp:scale = (3, 3, 3)
+        double3 xformOp:translate = (5, 0, 3)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Cone "Child_A"
+        {
+            double3 xformOp:translate = (2, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Xform "Alt_Parent"
+    {
+        def Cone "Child_B"
+        {
+            double3 xformOp:translate = (2, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}
+
