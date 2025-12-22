@@ -17,3 +17,8 @@ def Xform "World"
     }
 }
 
+over "_osm_street_data"
+{
+    custom int osm:street:maxspeed = 40
+}
+

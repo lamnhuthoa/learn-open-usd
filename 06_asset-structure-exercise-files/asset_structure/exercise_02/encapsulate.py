@@ -13,23 +13,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 from pathlib import Path
 
-from pxr import Usd, UsdGeom, Sdf
+from pxr import Usd, UsdGeom
 
 
 working_dir = Path(__file__).parent
-scenario2 = Usd.Stage.Open(str(working_dir / "scenario_02.usd"))
 
-# ADD CODE BELOW HERE
-# vvvvvvvvvvvvvvvvvvv
+stage = Usd.Stage.Open(str(working_dir / "lrg_bldgF.usd"))
+default_prim = stage.GetDefaultPrim()
+unencapsulated_prims = []
+for prim in stage.GetPseudoRoot().GetChildren():
+    if prim != default_prim:
+        unencapsulated_prims.append(prim)
 
-class_prim = scenario2.OverridePrim("/_osm_street_data")
-max_speed_attr = class_prim.CreateAttribute("osm:street:maxspeed", Sdf.ValueTypeNames.Int, custom=True)
-max_speed_attr.Set(40)
+editor = Usd.NamespaceEditor(stage)
+for prim in unencapsulated_prims:
+    editor.ReparentPrim(prim, default_prim)
+    # NamespaceEditor takes care of updating all relationship targets (e.g. material bindings)
+    editor.ApplyEdits()
 
-# ^^^^^^^^^^^^^^^^^^^^
-# ADD CODE ABOVE HERE
-
-scenario2.Save()
+stage.Save()

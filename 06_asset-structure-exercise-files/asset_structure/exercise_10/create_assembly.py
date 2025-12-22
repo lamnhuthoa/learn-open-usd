@@ -13,42 +13,49 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 from pathlib import Path
 
-from pxr import Usd, UsdGeom, Sdf
+from pxr import Kind, Sdf, Usd, UsdGeom
+
+
+def position_bldg(prim: Usd.Prim, index: int):
+    xform_api = UsdGeom.XformCommonAPI(prim)
+    z_offset = 0.0
+    rotY = 0.0
+    if index > 3:
+        z_offset = 200.0
+        rotY = 180.0
+    xform_api.SetTranslate((300.0*((index-1) % 3), 0.0, z_offset))
+    xform_api.SetRotate((0.0, rotY, 0.0))
 
 
 working_dir = Path(__file__).parent
-side_streets = ["road_straight_59", "road_straight_34", "road_straight_28", "road_straight_27"]
 
-asset_stage = Usd.Stage.Open(str(working_dir / "main_street.usd"))
-
+asset_layer = Sdf.Layer.CreateNew(str(working_dir / "city_blockA.usd"), args={"format": "usda"})
+stage = Usd.Stage.Open(asset_layer)
+world_prim = UsdGeom.Xform.Define(stage, "/World").GetPrim()
+stage.SetDefaultPrim(world_prim)
 # PART 1
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-class_prim = asset_stage.CreateClassPrim("/_osm_street_data")
-max_speed_attr = class_prim.CreateAttribute("osm:street:maxspeed", Sdf.ValueTypeNames.Int, custom=True)
-max_speed_attr.Set(30)
+# [...]
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
+# END PART 1
 
+UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.y)
+UsdGeom.SetStageMetersPerUnit(stage, UsdGeom.LinearUnits.centimeters)
 
 # PART 2
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-for prim in asset_stage.Traverse():
-    if prim.IsA(UsdGeom.Mesh) and prim.GetName().startswith("road_") and not "Barrier" in prim.GetName():
-        prim.GetSpecializes().AddSpecialize(class_prim.GetPath())
-    if prim.GetName() in side_streets:
-        prim.GetAttribute("osm:street:maxspeed").Set(20)
+# [...]
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
+# END PART 2
 
-
-
-asset_stage.Save()
+stage.Save()

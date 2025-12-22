@@ -13,23 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 from pathlib import Path
 
-from pxr import Usd, UsdGeom, Sdf
-
+from pxr import Sdf, Usd, UsdGeom, UsdShade
 
 working_dir = Path(__file__).parent
-scenario2 = Usd.Stage.Open(str(working_dir / "scenario_02.usd"))
 
-# ADD CODE BELOW HERE
-# vvvvvvvvvvvvvvvvvvv
+stage: Usd.Stage = Usd.Stage.Open(str(working_dir / "lrg_bldgF.usd"))
+default_prim: Usd.Prim = stage.GetDefaultPrim()
+primvars_api = UsdGeom.PrimvarsAPI(default_prim)
+accent_color = primvars_api.CreatePrimvar("accentColor", Sdf.ValueTypeNames.Float3, UsdGeom.Tokens.constant)
+accent_color.Set((1.0, 0.0, 0.0))
 
-class_prim = scenario2.OverridePrim("/_osm_street_data")
-max_speed_attr = class_prim.CreateAttribute("osm:street:maxspeed", Sdf.ValueTypeNames.Int, custom=True)
-max_speed_attr.Set(40)
-
-# ^^^^^^^^^^^^^^^^^^^^
-# ADD CODE ABOVE HERE
-
-scenario2.Save()
+stage.Save()

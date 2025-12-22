@@ -13,23 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 from pathlib import Path
+import random
 
-from pxr import Usd, UsdGeom, Sdf
+from pxr import Sdf, Usd, UsdGeom
 
+accent_choices = [(0.3372549, 0.7372549, 0.6), (0.14835148, 0.44579056, 0.74917495), 
+                  (0.8151815, 0.76243955, 0.46005294), (0.81166536, 0.46005294, 0.8151815)]
 
 working_dir = Path(__file__).parent
-scenario2 = Usd.Stage.Open(str(working_dir / "scenario_02.usd"))
 
-# ADD CODE BELOW HERE
-# vvvvvvvvvvvvvvvvvvv
+stage: Usd.Stage = Usd.Stage.Open(str(working_dir / "city_blockA.usd"))
+shading_layer_path = "./contents/shading.usd"
+shading_layer = Sdf.Layer.FindOrOpen(str(working_dir / shading_layer_path))
+with Usd.EditContext(stage, shading_layer):
+    print("Setting building shading variations...")
+    # ADD CODE BELOW HERE
+    # vvvvvvvvvvvvvvvvvvv
 
-class_prim = scenario2.OverridePrim("/_osm_street_data")
-max_speed_attr = class_prim.CreateAttribute("osm:street:maxspeed", Sdf.ValueTypeNames.Int, custom=True)
-max_speed_attr.Set(40)
+    # [...]
 
-# ^^^^^^^^^^^^^^^^^^^^
-# ADD CODE ABOVE HERE
+    # ^^^^^^^^^^^^^^^^^^^^
+    # ADD CODE ABOVE HERE
 
-scenario2.Save()
+stage.Save()

@@ -13,42 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 from pathlib import Path
 
-from pxr import Usd, UsdGeom, Sdf
+from pxr import Usd, UsdGeom
 
 
 working_dir = Path(__file__).parent
-side_streets = ["road_straight_59", "road_straight_34", "road_straight_28", "road_straight_27"]
 
-asset_stage = Usd.Stage.Open(str(working_dir / "main_street.usd"))
+stage = Usd.Stage.Open(str(working_dir / "export.usd"))
+# Get all existing root prims
+root_prims = stage.GetPseudoRoot().GetChildren()
+# Create the entry point print. 
+# We use the namespace `/World` by convention.
+world_prim = UsdGeom.Xform.Define(stage, "/World").GetPrim()
+# Set the default prim for referencing and payloading.
+stage.SetDefaultPrim(world_prim)
 
-# PART 1
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-class_prim = asset_stage.CreateClassPrim("/_osm_street_data")
-max_speed_attr = class_prim.CreateAttribute("osm:street:maxspeed", Sdf.ValueTypeNames.Int, custom=True)
-max_speed_attr.Set(30)
+# [...]
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
 
-
-# PART 2
-# ADD CODE BELOW HERE
-# vvvvvvvvvvvvvvvvvvv
-
-for prim in asset_stage.Traverse():
-    if prim.IsA(UsdGeom.Mesh) and prim.GetName().startswith("road_") and not "Barrier" in prim.GetName():
-        prim.GetSpecializes().AddSpecialize(class_prim.GetPath())
-    if prim.GetName() in side_streets:
-        prim.GetAttribute("osm:street:maxspeed").Set(20)
-
-# ^^^^^^^^^^^^^^^^^^^^
-# ADD CODE ABOVE HERE
-
-
-
-asset_stage.Save()
+stage.GetRootLayer().Export(str(working_dir / "lrg_bldgF.usd"), args={"format":"usda"})

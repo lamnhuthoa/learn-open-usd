@@ -9,6 +9,7 @@
 )
 
 def Xform "World" (
+    prepend inherits = </_street_lamp_dbl>
     kind = "component"
 )
 {
@@ -170,5 +171,9 @@ def Xform "World" (
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
         }
     }
+}
+
+class "_street_lamp_dbl"
+{
 }
 

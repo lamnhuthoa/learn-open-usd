@@ -17,3 +17,30 @@ def Xform "World"
     }
 }
 
+over "_street_lamp_dbl"
+{
+    over "Lights"
+    {
+        over "sphere_light_01"
+        {
+            color3f inputs:color = (0.5, 0.4, 0.1)
+        }
+
+        over "sphere_light_02"
+        {
+            color3f inputs:color = (0.5, 0.4, 0.1)
+        }
+    }
+
+    over "Looks"
+    {
+        over "light"
+        {
+            over "light"
+            {
+                color3f inputs:emissiveColor = (0.5, 0.4, 0.1)
+            }
+        }
+    }
+}
+
