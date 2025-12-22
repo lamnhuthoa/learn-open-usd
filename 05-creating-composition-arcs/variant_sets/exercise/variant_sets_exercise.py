@@ -49,7 +49,9 @@ root = stage.GetDefaultPrim()
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+vset: Usd.VariantSet = root.GetVariantSets().AddVariantSet("lights")
+vset.AddVariant("on")
+vset.AddVariant("off")
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
@@ -61,7 +63,9 @@ root = stage.GetDefaultPrim()
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+vset.SetVariantSelection("on")
+with vset.GetVariantEditContext():
+    toggle_lights(True)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
@@ -73,7 +77,9 @@ root = stage.GetDefaultPrim()
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+vset.SetVariantSelection("off")
+with vset.GetVariantEditContext():
+    toggle_lights(False)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
