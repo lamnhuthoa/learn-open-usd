@@ -37,7 +37,12 @@ UsdGeom.Xform.Define(stage, "/World")
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+skyscraper_01 = UsdGeom.Xform.Define(stage, "/World/skyscraperA_01")
+skyscraper_01.GetPrim().GetReferences().AddReference(skyscraperA_relpath)
+skyscraper_02 = UsdGeom.Xform.Define(stage, "/World/skyscraperA_02")
+skyscraper_02.GetPrim().GetReferences().AddReference(skyscraperA_relpath)
+skyscraper_02_xformapi = UsdGeom.XformCommonAPI(skyscraper_02)
+skyscraper_02_xformapi.SetTranslate(Gf.Vec3d(180, 0, 0))
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
@@ -46,7 +51,10 @@ UsdGeom.Xform.Define(stage, "/World")
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+skyscraper_03 = UsdGeom.Xform.Define(stage, "/World/skyscraperE_01")
+skyscraper_03.GetPrim().GetReferences().AddReference(skyscraperE_relpath)
+skyscraper_03_xformapi = UsdGeom.XformCommonAPI(skyscraper_03)
+skyscraper_03_xformapi.SetTranslate(Gf.Vec3d(340, 0, 0))
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
