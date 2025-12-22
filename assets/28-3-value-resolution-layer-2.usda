@@ -1,0 +1,23 @@
+#usda 1.0
+
+def "World"
+{
+    def Xform "XformPrim" (
+        customData = {
+            string opinion = "strong"
+            string source = "layer_2"
+        }
+    )
+    {
+        custom rel look:targets
+        prepend rel look:targets = </World/Looks/LookB>
+    }
+
+    def "Looks"
+    {
+        def Xform "LookB"
+        {
+        }
+    }
+}
+

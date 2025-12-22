@@ -1,0 +1,32 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+)
+
+def Xform "World"
+{
+    def Xform "Box"
+    {
+        def Xform "Geometry"
+        {
+            def Cube "Cube"
+            {
+            }
+        }
+
+        def Scope "Materials"
+        {
+            def Scope "BoxMat"
+            {
+            }
+        }
+    }
+
+    def Xform "Environment"
+    {
+        def DomeLight "SkyLight"
+        {
+        }
+    }
+}
+

@@ -1,0 +1,31 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    endTimeCode = 90
+    startTimeCode = 1
+    timeCodesPerSecond = 30
+)
+
+def Xform "World"
+{
+    def Mesh "Plane"
+    {
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        point3f[] points = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]
+        point3f[] points.timeSamples = {
+            1: [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)],
+            90: [(0, 0, 0), (0.7, 0.4, 0), (0.7, 1.4, 0), (0, 1, 0)],
+        }
+        float3[] primvars:deformation = [(0, 0, 0), (-0.3, 0.4, 0), (-0.3, 0.4, 0), (0, 0, 0)] (
+            interpolation = "vertex"
+        )
+        color3f[] primvars:displayColor = [(0.1, 0.8, 0.1)]
+        float3[] primvars:rest_state = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)] (
+            interpolation = "vertex"
+        )
+        double3 xformOp:translate = (2, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+

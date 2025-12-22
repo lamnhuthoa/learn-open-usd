@@ -1,0 +1,16 @@
+#usda 1.0
+
+def Xform "World"
+{
+    def Sphere "HiRes"
+    {
+        rel proxyPrim = </World/Proxy>
+        uniform token purpose = "render"
+    }
+
+    def Cube "Proxy"
+    {
+        uniform token purpose = "proxy"
+    }
+}
+

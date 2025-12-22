@@ -1,0 +1,28 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+)
+
+def Xform "World"
+{
+    def Cube "Box"
+    {
+        double size = 2
+    }
+
+    def Cube "Box_2"
+    {
+        double size = 2
+        double3 xformOp:translate = (5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def "_Look"
+    {
+        class "_green"
+        {
+            color3f[] primvars:displayColor = [(0.1, 0.8, 0.2)]
+        }
+    }
+}
+

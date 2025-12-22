@@ -1,0 +1,22 @@
+#usda 1.0
+
+def "World"
+{
+    def "Geom"
+    {
+        def Sphere "Sphere"
+        {
+            custom rel my:ref
+            prepend rel my:ref = </World/Markers/MarkerA>
+            custom string userProperties:tag = "surveyed"
+        }
+    }
+
+    def "Markers"
+    {
+        def Xform "MarkerA"
+        {
+        }
+    }
+}
+

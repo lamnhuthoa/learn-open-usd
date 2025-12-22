@@ -1,0 +1,8 @@
+#usda 1.0
+(
+    subLayers = [
+        @28-3-value-resolution-layer-2.usda@,
+        @28-2-value-resolution-layer-1.usda@
+    ]
+)
+

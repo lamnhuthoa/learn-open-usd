@@ -1,0 +1,53 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    endTimeCode = 120
+    startTimeCode = 1
+    timeCodesPerSecond = 30
+)
+
+def Xform "World"
+{
+    float3 xformOp:rotateXYZ = (-75, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+
+    def Cube "Ground"
+    {
+        float3 xformOp:scale = (10, 5, 0.1)
+        double3 xformOp:translate = (0, 0, -0.1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "StaticDefaultCube"
+    {
+        color3f[] primvars:displayColor = [(0.2, 0.2, 0.8)]
+        float3 xformOp:scale
+        double3 xformOp:translate = (8, 0, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "StaticCube"
+    {
+        color3f[] primvars:displayColor = [(0.8, 0.2, 0.2)]
+        float3 xformOp:scale = (1.5, 1.5, 1.5)
+        double3 xformOp:translate = (-8, 0, 1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "AnimCube"
+    {
+        color3f[] primvars:displayColor = [(0.2, 0.8, 0.2)]
+        float3 xformOp:scale = (1.5, 1.5, 1.5)
+        float3 xformOp:scale.timeSamples = {
+            60: (2.5, 2.5, 2.5),
+            120: (5, 5, 5),
+        }
+        double3 xformOp:translate = (0, 0, 1.5)
+        double3 xformOp:translate.timeSamples = {
+            60: (0, 0, 2.5),
+            120: (0, 0, 5),
+        }
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+}
+

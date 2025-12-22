@@ -1,0 +1,37 @@
+#usda 1.0
+
+def Xform "World"
+{
+    def Scope "A_Scope" (
+        active = false
+    )
+    {
+        def Sphere "A_Sphere_0"
+        {
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Sphere "A_Sphere_1"
+        {
+            double3 xformOp:translate = (2.5, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Scope "B_Scope"
+    {
+        def Cube "B_Cube_0"
+        {
+            double3 xformOp:translate = (0, -2.5, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cube "B_Cube_1"
+        {
+            double3 xformOp:translate = (2.5, -2.5, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}
+

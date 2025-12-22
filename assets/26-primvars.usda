@@ -1,0 +1,44 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+)
+
+def Xform "World"
+{
+    def Mesh "PerPrim"
+    {
+        int[] faceVertexCounts = [4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 1, 4, 5, 2]
+        point3f[] points = [(-1, 0, 0), (0, 0, 0), (0, 1, 0), (-1, 1, 0), (1, 0, 0), (1, 1, 0)]
+        color3f[] primvars:displayColor = [(0.5, 0, 0.5)] (
+            interpolation = "constant"
+        )
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Mesh "PerFace"
+    {
+        int[] faceVertexCounts = [4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 1, 4, 5, 2]
+        point3f[] points = [(-1, 0, 0), (0, 0, 0), (0, 1, 0), (-1, 1, 0), (1, 0, 0), (1, 1, 0)]
+        color3f[] primvars:displayColor = [(0, 0, 1), (1, 0, 0)] (
+            interpolation = "uniform"
+        )
+        double3 xformOp:translate = (2.5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Mesh "PerVertex"
+    {
+        int[] faceVertexCounts = [4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 1, 4, 5, 2]
+        point3f[] points = [(-1, 0, 0), (0, 0, 0), (0, 1, 0), (-1, 1, 0), (1, 0, 0), (1, 1, 0)]
+        color3f[] primvars:displayColor = [(0, 0, 1), (0.5, 0, 0.5), (0.5, 0, 0.5), (0, 0, 1), (1, 0, 0), (1, 0, 0)] (
+            interpolation = "vertex"
+        )
+        double3 xformOp:translate = (5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+
