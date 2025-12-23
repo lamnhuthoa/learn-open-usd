@@ -2,12 +2,17 @@
 (
     defaultPrim = "World"
     metersPerUnit = 0.01
+    subLayers = [
+        @./contents/shading.usd@,
+        @./contents/geometry.usd@
+    ]
     upAxis = "Y"
 )
 
-def Xform "World" (
-    prepend payload = @ ./contents.usd@
-)
+def Xform "World"
 {
+    float3 primvars:accentColor = (1, 0, 0) (
+        interpolation = "constant"
+    )
 }
 
