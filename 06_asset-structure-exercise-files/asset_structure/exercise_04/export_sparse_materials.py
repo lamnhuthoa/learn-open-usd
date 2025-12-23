@@ -23,7 +23,7 @@ material_data = {
         "window": {"diffuseColor": (0.7372549, 0.8862745, 1), "roughness": 1.0, "metallic": 1.0},
         "material_defaultMat": {"diffuseColor": (0.764151, 0.764151, 0.764151), "roughness": 1.0, "metallic": 1.0},
         "border": {"diffuseColor": (0.56078434, 0.5686275, 0.6), "roughness": 1.0, "metallic": 1.0},
-        "roof": {"diffuseColor": (0.3372549, 0.7372549, 0.6), "roughness": 1.0, "metallic": 1.0},
+        "roof": {"diffuseColor": (0.0, 0.0, 1.0), "roughness": 1.0, "metallic": 1.0},
     },
     "assignments": {
         "large_buildingF": {

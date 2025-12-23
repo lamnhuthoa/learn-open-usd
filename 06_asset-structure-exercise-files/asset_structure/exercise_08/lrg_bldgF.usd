@@ -7,10 +7,36 @@
 
 def Xform "World" (
     prepend payload = @./contents.usd@
+    variants = {
+        string exteriorType = "stucco"
+    }
+    prepend variantSets = "exteriorType"
 )
 {
     float3 primvars:accentColor = (1, 0, 0) (
         interpolation = "constant"
     )
+    variantSet "exteriorType" = {
+        "brick" {
+            over "Looks" (
+                variants = {
+                    string exteriorType = "brick"
+                }
+            )
+            {
+            }
+
+        }
+        "stucco" {
+            over "Looks" (
+                variants = {
+                    string exteriorType = "stucco"
+                }
+            )
+            {
+            }
+
+        }
+    }
 }
 

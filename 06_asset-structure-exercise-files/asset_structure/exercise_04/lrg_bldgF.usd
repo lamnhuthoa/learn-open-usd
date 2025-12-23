@@ -3,6 +3,7 @@
     defaultPrim = "World"
     metersPerUnit = 0.01
     subLayers = [
+        @./contents/shading.usd@,
         @./contents/geometry.usd@
     ]
     upAxis = "Y"

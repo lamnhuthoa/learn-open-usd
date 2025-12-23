@@ -6,7 +6,7 @@
 )
 
 def Xform "World" (
-    prepend payload = @./contents.usd@
+    prepend payload = @ ./contents.usd@
 )
 {
 }

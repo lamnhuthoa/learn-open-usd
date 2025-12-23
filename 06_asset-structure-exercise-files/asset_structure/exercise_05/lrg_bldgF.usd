@@ -11,5 +11,8 @@
 
 def Xform "World"
 {
+    float3 primvars:accentColor = (1, 0, 0) (
+        interpolation = "constant"
+    )
 }
 

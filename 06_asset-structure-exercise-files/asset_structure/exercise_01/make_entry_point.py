@@ -32,7 +32,11 @@ stage.SetDefaultPrim(world_prim)
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+editor = Usd.NamespaceEditor(stage)
+for prim in root_prims:
+    editor.ReparentPrim(prim, world_prim)
+    # NamespaceEditor takes care of updating all relationship targets (e.g. material bindings)
+    editor.ApplyEdits()
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE

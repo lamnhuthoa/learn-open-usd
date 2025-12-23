@@ -9,5 +9,8 @@ def Xform "World" (
     prepend payload = @./contents.usd@
 )
 {
+    float3 primvars:accentColor = (1, 0, 0) (
+        interpolation = "constant"
+    )
 }
 

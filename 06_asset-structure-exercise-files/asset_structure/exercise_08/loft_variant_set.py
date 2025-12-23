@@ -35,7 +35,16 @@ for vset_name in vsets.GetNames():
     # ADD CODE BELOW HERE
     # vvvvvvvvvvvvvvvvvvv
 
-    # [...]
+    # Create the same variant set on the default_prim.
+    lofted_vset: Usd.VariantSet = default_prim.GetVariantSets().AddVariantSet(vset_name)
+    for variant in variants:
+        lofted_vset.AddVariant(variant)
+        lofted_vset.SetVariantSelection(variant)
+        # The lofted variant set just selects the
+        # same variant from the nested variant set.
+        with lofted_vset.GetVariantEditContext():
+            vset.SetVariantSelection(variant)
+    lofted_vset.SetVariantSelection(default)
 
     # ^^^^^^^^^^^^^^^^^^^^
     # ADD CODE ABOVE HERE
