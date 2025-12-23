@@ -49,7 +49,16 @@ UsdGeom.SetStageMetersPerUnit(stage, UsdGeom.LinearUnits.centimeters)
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+### Update - Added for loop for street sides
+for side in Side:
+    ### Update - Added an intermediate group prim between /World and the building references.
+    side_xform = UsdGeom.Xform.Define(stage, world_prim.GetPath().AppendChild(side.name))
+    Usd.ModelAPI(side_xform).SetKind(Kind.Tokens.group)
+    for x in range(1,4):
+        ref_path: Sdf.Path = side_xform.GetPath().AppendChild(f"lrg_bldgF_{x:02}")
+        ref_target_prim = UsdGeom.Xform.Define(stage, ref_path).GetPrim()
+        ref_target_prim.GetReferences().AddReference("./lrg_bldgF/lrg_bldgF.usd")
+        position_bldg(ref_target_prim, x, side)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE

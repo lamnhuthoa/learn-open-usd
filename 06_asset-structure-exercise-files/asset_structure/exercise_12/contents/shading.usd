@@ -1,2 +1,65 @@
 #usda 1.0
 
+over "World"
+{
+    over "North"
+    {
+        over "lrg_bldgF_01" (
+            variants = {
+                string exteriorType = "stucco"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.14835148, 0.44579056, 0.74917495)
+        }
+
+        over "lrg_bldgF_02" (
+            variants = {
+                string exteriorType = "stucco"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.81166536, 0.46005294, 0.8151815)
+        }
+
+        over "lrg_bldgF_03" (
+            variants = {
+                string exteriorType = "stucco"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.81166536, 0.46005294, 0.8151815)
+        }
+    }
+
+    over "South"
+    {
+        over "lrg_bldgF_01" (
+            variants = {
+                string exteriorType = "stucco"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.8151815, 0.76243955, 0.46005294)
+        }
+
+        over "lrg_bldgF_02" (
+            variants = {
+                string exteriorType = "stucco"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.3372549, 0.7372549, 0.6)
+        }
+
+        over "lrg_bldgF_03" (
+            variants = {
+                string exteriorType = "brick"
+            }
+        )
+        {
+            float3 primvars:accentColor = (0.14835148, 0.44579056, 0.74917495)
+        }
+    }
+}
+

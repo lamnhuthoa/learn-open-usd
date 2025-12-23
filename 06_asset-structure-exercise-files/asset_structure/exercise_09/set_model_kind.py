@@ -24,7 +24,7 @@ default_prim: Usd.Prim = stage.GetDefaultPrim()
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+Usd.ModelAPI(default_prim).SetKind(Kind.Tokens.component)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE

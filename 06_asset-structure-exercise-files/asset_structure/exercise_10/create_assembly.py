@@ -39,7 +39,7 @@ stage.SetDefaultPrim(world_prim)
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+Usd.ModelAPI(world_prim).SetKind(Kind.Tokens.assembly)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE
@@ -52,7 +52,11 @@ UsdGeom.SetStageMetersPerUnit(stage, UsdGeom.LinearUnits.centimeters)
 # ADD CODE BELOW HERE
 # vvvvvvvvvvvvvvvvvvv
 
-# [...]
+for x in range(1,7):
+    ref_path: Sdf.Path = world_prim.GetPath().AppendChild(f"lrg_bldgF_{x:02}")
+    ref_target_prim = UsdGeom.Xform.Define(stage, ref_path).GetPrim()
+    ref_target_prim.GetReferences().AddReference("./lrg_bldgF/lrg_bldgF.usd")
+    position_bldg(ref_target_prim, x)
 
 # ^^^^^^^^^^^^^^^^^^^^
 # ADD CODE ABOVE HERE

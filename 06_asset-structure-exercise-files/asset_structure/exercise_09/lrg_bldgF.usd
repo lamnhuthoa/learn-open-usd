@@ -6,6 +6,7 @@
 )
 
 def Xform "World" (
+    kind = "component"
     prepend payload = @./contents.usd@
     variants = {
         string exteriorType = "stucco"

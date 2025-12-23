@@ -31,7 +31,12 @@ with Usd.EditContext(stage, shading_layer):
     # ADD CODE BELOW HERE
     # vvvvvvvvvvvvvvvvvvv
 
-    # [...]
+    for prim in stage.Traverse():
+        if prim.IsComponent() and prim.GetVariantSets().HasVariantSet("exteriorType"):
+            accent_primvar = UsdGeom.PrimvarsAPI(prim).GetPrimvar("accentColor")
+            accent_primvar.Set(random.choice(accent_choices))
+            vset = prim.GetVariantSet("exteriorType")
+            vset.SetVariantSelection(random.choice(vset.GetVariantNames()))
 
     # ^^^^^^^^^^^^^^^^^^^^
     # ADD CODE ABOVE HERE
